@@ -3,18 +3,18 @@ package labyrinth;
 import java.awt.Color;
 
 import datastructure.GridDirection;
-import datastructure.ILabyrinthTileGrid;
+import datastructure.IGrid;
 import datastructure.Location;
 
 public class Labyrinth implements ILabyrinth {
-	private final ILabyrinthTileGrid tiles;
+	private final IGrid<LabyrinthTile> tiles;
 	// private int playerX = -1;
 	// private int playerY = -1;
 	private Location playerLoc;
 
 	boolean playerSet;
 
-	public Labyrinth(ILabyrinthTileGrid tiles) throws LabyrinthParseException {
+	public Labyrinth(IGrid<LabyrinthTile> tiles) throws LabyrinthParseException {
 		if (tiles == null) {
 			throw new IllegalArgumentException();
 		}

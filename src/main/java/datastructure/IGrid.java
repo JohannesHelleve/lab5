@@ -7,7 +7,7 @@ import cellular.cellstate.ICellState;
  * 
  * @author Anna Eilertsen - anna.eilertsen@uib.no
  */
-public interface ICellStateGrid {
+public interface IGrid<T>{
 
 	/**
 	 * @return The number of columns in the grid.
@@ -31,7 +31,7 @@ public interface ICellStateGrid {
 	 * @param y       The row of the cell to change the contents of.
 	 * @param element The contents the cell is to have.
 	 */
-	void set(Location loc, ICellState element);
+	void set(Location loc, T element);
 
 	/**
 	 * Get the contents of the cell in the given x,y location.
@@ -42,7 +42,7 @@ public interface ICellStateGrid {
 	 * @param x The column of the cell to get the contents of.
 	 * @param y The row of the cell to get contents of.
 	 */
-	ICellState get(Location loc);
+	T get(Location loc);
 
 	/**
 	 * Makes it possible to iterate over all locations of this grid
@@ -63,5 +63,5 @@ public interface ICellStateGrid {
 	 * 
 	 * @return A shallow copy of the grid, with the same elements
 	 */
-	ICellStateGrid copy();
+	IGrid copy();
 }

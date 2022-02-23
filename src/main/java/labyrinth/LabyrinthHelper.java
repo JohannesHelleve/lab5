@@ -2,17 +2,17 @@ package labyrinth;
 
 import java.util.Random;
 
-import datastructure.ILabyrinthTileGrid;
-import datastructure.LabyrinthTileGrid;
+import datastructure.IGrid;
+import datastructure.Grid;
 import datastructure.Location;
 
 public class LabyrinthHelper {
 
-	public static ILabyrinthTileGrid loadGrid(char[][] source) {
+	public static IGrid<LabyrinthTile> loadGrid(char[][] source) {
 		int rows = source.length;
 		int cols = source[0].length;
 
-		ILabyrinthTileGrid grid = new LabyrinthTileGrid(rows, cols, LabyrinthTile.OPEN);
+		IGrid<LabyrinthTile> grid = new Grid(rows, cols, LabyrinthTile.OPEN);
 		for (int col = 0; col < cols; col++) {
 			for (int row = 0; row < rows; row++) {
 				Location loc = new Location(row, col);
@@ -30,10 +30,10 @@ public class LabyrinthHelper {
 		return grid;
 	}
 
-	public static ILabyrinthTileGrid makeRandomGrid(int width, int height) {
+	public static IGrid<LabyrinthTile> makeRandomGrid(int width, int height) {
 		Random random = new Random();
 
-		ILabyrinthTileGrid grid = new LabyrinthTileGrid(width, height, LabyrinthTile.OPEN);
+		IGrid<LabyrinthTile> grid = new Grid(width, height, LabyrinthTile.OPEN);
 		for (Location loc : grid.locations()) {
 			int r = random.nextInt(20);
 			LabyrinthTile tile;

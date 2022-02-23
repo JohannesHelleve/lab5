@@ -6,8 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import datastructure.GridDirection;
-import datastructure.ICellStateGrid;
-import datastructure.ILabyrinthTileGrid;
+import datastructure.IGrid;
 import datastructure.Location;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -22,7 +21,7 @@ public class LabyrinthTest {
 		labyrinth = new Labyrinth(testGrid());
 	}
 
-	private ILabyrinthTileGrid testGrid() {
+	private IGrid<LabyrinthTile> testGrid() {
 		return LabyrinthHelper.loadGrid(new char[][] { //
 				{ '*', '*', '*', '*' }, //
 				{ '*', ' ', ' ', '*' }, //

@@ -3,9 +3,9 @@ package cellular;
 import cellular.cellstate.AntCellState;
 import cellular.cellstate.CellState;
 import cellular.cellstate.ICellState;
-import datastructure.CellStateGrid;
+import datastructure.Grid;
 import datastructure.GridDirection;
-import datastructure.ICellStateGrid;
+import datastructure.IGrid;
 import datastructure.Location;
 
 public class LangtonsAnt implements ICellAutomaton {
@@ -26,7 +26,7 @@ public class LangtonsAnt implements ICellAutomaton {
 	/**
 	 * A grid of the cell states in the current generation
 	 */
-	private final ICellStateGrid currentGeneration;
+	private final IGrid<ICellState> currentGeneration;
 
 	/**
 	 * The ant
@@ -45,7 +45,7 @@ public class LangtonsAnt implements ICellAutomaton {
 	 * @param rule String of characters 'L' and 'R'
 	 */
 	public LangtonsAnt(int rows, int cols, String rule) {
-		this.currentGeneration = new CellStateGrid(rows, cols, null);
+		this.currentGeneration = new Grid(rows, cols, null);
 		checkRule(rule);
 		this.rule = rule.toCharArray();
 		initializeCells();

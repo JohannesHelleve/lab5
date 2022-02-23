@@ -10,8 +10,8 @@ import cellular.cellstate.ICellState;
  * 
  * @author Martin Vatshelle - martin.vatshelle@uib.no
  */
-public class CellStateGrid implements ICellStateGrid {
-	private final List<ICellState> cells;
+public class Grid <T> implements IGrid <T> {
+	private final List<T> cells;
 	private final int columns;
 	private final int rows;
 
@@ -22,14 +22,14 @@ public class CellStateGrid implements ICellStateGrid {
 	 * @param columns
 	 * @param initElement What the cells should initially hold (possibly null)
 	 */
-	public CellStateGrid(int rows, int columns, ICellState initElement) {
+	public Grid(int rows, int columns, T initElement) {
 		if (rows <= 0 || columns <= 0) {
 			throw new IllegalArgumentException();
 		}
 
 		this.columns = columns;
 		this.rows = rows;
-		cells = new ArrayList<ICellState>(columns * rows);
+		cells = new ArrayList<T>(columns * rows);
 		for (int i = 0; i < columns * rows; ++i) {
 			cells.add(initElement);
 		}
@@ -46,7 +46,7 @@ public class CellStateGrid implements ICellStateGrid {
 	}
 
 	@Override
-	public void set(Location loc, ICellState elem) {
+	public void set(Location loc, T elem) {
 		checkLocation(loc);
 
 		cells.set(locationToIndex(loc), elem);
@@ -81,7 +81,7 @@ public class CellStateGrid implements ICellStateGrid {
 	}
 
 	@Override
-	public ICellState get(Location loc) {
+	public T get(Location loc) {
 		checkLocation(loc);
 
 		return cells.get(locationToIndex(loc));
@@ -93,8 +93,8 @@ public class CellStateGrid implements ICellStateGrid {
 	}
 
 	@Override
-	public ICellStateGrid copy() {
-		CellStateGrid newGrid = new CellStateGrid(numRows(), numColumns(), null);
+	public IGrid copy() {
+		Grid newGrid = new Grid(numRows(), numColumns(), null);
 
 		for (Location loc : this.locations()) {
 			newGrid.set(loc, this.get(loc));

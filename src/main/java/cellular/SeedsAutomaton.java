@@ -4,9 +4,9 @@ import java.util.Random;
 
 import cellular.cellstate.CellState;
 import cellular.cellstate.ICellState;
-import datastructure.CellStateGrid;
+import datastructure.Grid;
 import datastructure.GridDirection;
-import datastructure.ICellStateGrid;
+import datastructure.IGrid;
 import datastructure.Location;
 
 /**
@@ -26,7 +26,7 @@ public class SeedsAutomaton implements ICellAutomaton {
 	/**
 	 * The grid containing the current generation.
 	 */
-	ICellStateGrid currentGeneration;
+	IGrid<ICellState> currentGeneration;
 
 	/**
 	 * Construct a Seeds ICellAutomaton using a grid with the given height and
@@ -36,7 +36,7 @@ public class SeedsAutomaton implements ICellAutomaton {
 	 * @param rows
 	 */
 	public SeedsAutomaton(int rows, int columns) {
-		currentGeneration = new CellStateGrid(rows, columns,
+		currentGeneration = new Grid(rows, columns,
 				CellState.DEAD);
 	}
 
@@ -70,7 +70,7 @@ public class SeedsAutomaton implements ICellAutomaton {
 	@Override
 	public void step() {
 
-		ICellStateGrid nextGeneration = new CellStateGrid(
+		IGrid<ICellState> nextGeneration = new Grid(
 				currentGeneration.numRows(), currentGeneration.numColumns(),
 				CellState.ALIVE);
 

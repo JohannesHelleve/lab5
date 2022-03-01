@@ -107,14 +107,18 @@ public class Labyrinth implements ILabyrinth {
 	}
 
 	@Override
-	public void movePlayer(GridDirection d) {
+	public void movePlayer(GridDirection d) throws MovePlayerException {
 		// TODO: check pre-conditions
-		Location newLoc = playerLoc.getNeighbor(d);
-		tiles.set(playerLoc, LabyrinthTile.OPEN);
-		playerLoc = newLoc;
-		tiles.set(newLoc, LabyrinthTile.PLAYER);
+		if(playerCanGo(d)) {
+			Location newLoc = playerLoc.getNeighbor(d);
+			tiles.set(playerLoc, LabyrinthTile.OPEN);
+			playerLoc = newLoc;
+			tiles.set(newLoc, LabyrinthTile.PLAYER);
 
-		checkState(this);
+			checkState(this);
+		}else{
+			throw new MovePlayerException("Bad MOVE!");
+		}
 	}
 
 	@Override
